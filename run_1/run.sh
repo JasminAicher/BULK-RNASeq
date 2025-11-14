@@ -24,7 +24,7 @@ echo " Using ${SLURM_NNODES} nodes"
 echo " Using ${SLURM_NTASKS} tasks"
 echo " Using ${OMP_NUM_THREADS} threads per process"
 
-hisat2-build -p 16 combined_hg38_mm39.fa combined_index
+hisat2-build -p 16 combined_genome.fa combined_index
 
 wait
 echo "All jobs completed."
