@@ -3,7 +3,8 @@
 #SBATCH --job-name=hisat2_index
 #SBATCH --output=hisat2_index_%j.log    # Protokoll-Datei
 #SBATCH --error=hisat2_index_%j.err     # Fehler-Protokoll
-#SBATCH --time=08:00:00                 # Maximale Laufzeit
+#SBATCH --time=8:00:00                 # Maximale Laufzeit
+#SBATCH --partition=intelsr_short
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=jaicher@uni-bonn.de  # Tipp: E-Mail-Benachrichtigung
 #SBATCH --nodes=1 # nodes requested
