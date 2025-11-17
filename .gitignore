@@ -1,3 +1,5 @@
 *.fa
 *.ht2
 *.ht2l
+*.log
+*.err
