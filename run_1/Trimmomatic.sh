@@ -14,17 +14,17 @@
 
 # Dateipräfix- und Zielordner definieren
 OUTPUT_DIR=../Trimmomatic
-ADAPTERS=${HOME}/adapters/TruSeq3-PE.fa
+
 
 # Automatisch alle R1-Dateien finden und Sample-Namen extrahieren
-for R1 in *_R1.fq.gz; do
+for R1 in *_1.fq.gz; do
     # Sample-Namen aus Dateinamen extrahieren
-    SAMPLE=$(basename ${R1} _R1.fq.gz)
+    SAMPLE=$(basename ${R1} _1.fq.gz)
     
     echo "Verarbeite ${SAMPLE}..."
     
     # Input-Dateien
-    R2=${SAMPLE}_R2.fq.gz
+    R2=${SAMPLE}_2.fq.gz
 
     # Prüfen ob R2 existiert
     if [ ! -f ${R2} ]; then
@@ -33,12 +33,11 @@ for R1 in *_R1.fq.gz; do
     fi
     
     # Trimmomatic ausführen
-    trimmomatic PE -threads 4 -phred33 ${R1} ${R2} \
-        ${OUTPUT_DIR}/${SAMPLE}_R1_paired.fq.gz ${OUTPUT_DIR}/${SAMPLE}_R1_unpaired.fq.gz \
-        ${OUTPUT_DIR}/${SAMPLE}_R2_paired.fq.gz ${OUTPUT_DIR}/${SAMPLE}_R2_unpaired.fq.gz \
-        ILLUMINACLIP:${ADAPTERS}:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
+    java -jar trimmomatic-0.40.jar PE ${R1} ${R2} ${OUTPUT_DIR}/${SAMPLE}_1_paired.fq.gz ${OUTPUT_DIR}/${SAMPLE}_1_unpaired.fq.gz ${OUTPUT_DIR}/${SAMPLE}_2_paired.fq.gz ${OUTPUT_DIR}/${SAMPLE}_2_unpaired.fq.gz ILLUMINACLIP:TruSeq3-PE.fa:2:30:10:2:True LEADING:3 TRAILING:3 MINLEN:36
     
     echo "${SAMPLE} abgeschlossen."
 done
 
 echo "Alle Samples verarbeitet!"
+
+
