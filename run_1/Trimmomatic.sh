@@ -14,7 +14,7 @@
 
 # Dateipräfix- und Zielordner definieren
 OUTPUT_DIR=../Trimmomatic
-
+module load Java
 
 # Automatisch alle R1-Dateien finden und Sample-Namen extrahieren
 for R1 in *_1.fq.gz; do
