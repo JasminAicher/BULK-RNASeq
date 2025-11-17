@@ -11,12 +11,10 @@
 #SBATCH --cpus-per-task=25 # number of allocated cores per process
 #SBATCH --mem=250G
 
-module load bio/trimmomatic
-
 # Dateipräfix- und Zielordner definieren
 INPUT_DIR=jaicher_hpc@marvin.hpc.uni-bonn.de:/lustre/scratch/data/jaicher_hpc-CNTNAP2/P2025-296-RNA/
 OUTPUT_DIR=jaicher_hpc@marvin.hpc.uni-bonn.de:/lustre/scratch/data/jaicher_hpc-CNTNAP2/Trimmomatic
-ADAPTERS=jaicher_hpc@marvin.hpc.uni-bonn.de:~/adapters//TruSeq3-PE.fa
+ADAPTERS=jaicher_hpc@marvin.hpc.uni-bonn.de:~/adapters/TruSeq3-PE.fa
 
 # Automatisch alle R1-Dateien finden und Sample-Namen extrahieren
 for R1 in ${INPUT_DIR}/*_R1.fq.gz; do
