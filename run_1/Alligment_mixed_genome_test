@@ -1,0 +1,15 @@
+#!/bin/bash
+#SBATCH --account=ag_ukb_irnb_bruestle
+#SBATCH --job-name=fast_qc
+#SBATCH --output=fast_qc_%j.log    # Protokoll-Datei
+#SBATCH --error=fast_qc_%j.err     # Fehler-Protokoll
+#SBATCH --time=8:00:00                 # Maximale Laufzeit
+#SBATCH --partition=intelsr_short
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=jaicher@uni-bonn.de  # Tipp: E-Mail-Benachrichtigung
+#SBATCH --nodes=1 # nodes requested
+#SBATCH --tasks-per-node=1 # number of tasks per node
+#SBATCH --cpus-per-task=25 # number of allocated cores per process
+#SBATCH --mem=250G
+
+hisat2 -x combined_index x -1 DE07NGSUKBR151852_1_paired.fq.gz  -2 DE07NGSUKBR151852_1_paired.fq.gz -S sample_combined.sam --summary-file sample_alignment_summary.txt

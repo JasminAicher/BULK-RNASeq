@@ -12,14 +12,13 @@
 #SBATCH --mem=250G
 
 
-INPUTDIR=jaicher_hpc@marvin.hpc.uni-bonn.de:/lustre/scratch/data/jaicher_hpc-CNTNAP2/Trimmomatic
 OUTPUTDIR=jaicher_hpc@marvin.hpc.uni-bonn.de:/lustre/scratch/data/jaicher_hpc-CNTNAP2/Trimmomatic/sams
 INDEX=jaicher_hpc@marvin.hpc.uni-bonn.de:/lustre/scratch/data/jaicher_hpc-CNTNAP2/BULK-RNASeq/run_1
 
 # Schleife über alle *_R1_paired.fq.gz Dateien 
-for R1 in "$INPUTDIR"/*_R1_paired.fq.gz; do
-    SAMPLE=$(basename "$R1" _R1_paired.fq.gz)
-    R2="$INPUTDIR/${SAMPLE}_R2_paired.fq.gz"
+for R1 in "$INPUTDIR"/*_1_paired.fq.gz; do
+    SAMPLE=$(basename "$R1" _1_paired.fq.gz)
+    R2="$INPUTDIR/${SAMPLE}_2_paired.fq.gz"
     
     # Prüfe ob die R2-Datei existiert
     if [ ! -f "$R2" ]; then
