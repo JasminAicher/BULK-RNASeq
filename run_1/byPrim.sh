@@ -18,4 +18,4 @@ export PATH=$HOME/hisat2-2.2.1:$PATH
 export PATH=$HOME/samtools-1.20:$PATH
 export PATH=$HOME/optimized/byPrim.py:$PATH
 
-python byPrim.py -s sample_combined.sam -r1 DE07NGSUKBR151852_1_paired.fq.gz -r2 DE07NGSUKBR151852_2_paired.fq.gz -prefix DE07NGSUKBR151852
+python $HOME/optimized/byPrim.py -s sample_combined.sam -r1 DE07NGSUKBR151852_1_paired.fq.gz -r2 DE07NGSUKBR151852_2_paired.fq.gz -prefix DE07NGSUKBR151852
