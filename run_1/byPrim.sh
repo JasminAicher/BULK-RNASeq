@@ -1,8 +1,8 @@
 #!/bin/bash
 #SBATCH --account=ag_ukb_irnb_bruestle
-#SBATCH --job-name=alligment
-#SBATCH --output=alligment_%j.log    # Protokoll-Datei
-#SBATCH --error=alligment_%j.err     # Fehler-Protokoll
+#SBATCH --job-name=byPrim
+#SBATCH --output=byPrim_%j.log    # Protokoll-Datei
+#SBATCH --error=byPrim_%j.err     # Fehler-Protokoll
 #SBATCH --time=8:00:00                 # Maximale Laufzeit
 #SBATCH --partition=intelsr_short
 #SBATCH --mail-type=ALL
