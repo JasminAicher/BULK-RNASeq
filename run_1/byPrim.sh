@@ -12,7 +12,10 @@
 #SBATCH --cpus-per-task=25 # number of allocated cores per process
 #SBATCH --mem=250G
 
+module load Python/3.9
+
 export PATH=$HOME/hisat2-2.2.1:$PATH
 export PATH=$HOME/samtools-1.20:$PATH
+export PATH=$HOME/optimized/byPrim.py:$PATH
 
-hisat2 -x combined_index  -1 DE07NGSUKBR151852_1_paired.fq.gz  -2 DE07NGSUKBR151852_2_paired.fq.gz -S sample_combined.sam --summary-file sample_alignment_summary.txt
+python byPrim.py -s sample_combined.sam -r1 DE07NGSUKBR151852_1_paired.fq.gz -r2 DE07NGSUKBR151852_2_paired.fq.gz -prefix DE07NGSUKBR151852
