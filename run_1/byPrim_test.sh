@@ -13,9 +13,6 @@
 #SBATCH --mem=250G
 
 module load Python/3.9
+module load Biopython/1.84-foss-2024a
 
-export PATH=$HOME/hisat2-2.2.1:$PATH
-export PATH=$HOME/samtools-1.20:$PATH
-export PATH=$HOME/optimized/byPrim.py:$PATH
-
-python $HOME/optimized/byPrim.py -s sample_combined.sam -r1 DE07NGSUKBR151852_1_paired.fq.gz -r2 DE07NGSUKBR151852_2_paired.fq.gz -prefix DE07NGSUKBR151852
+cat sample_combined.sam | python byPrim.py -s DE07NGSUKBR151852

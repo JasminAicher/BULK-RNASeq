@@ -19,10 +19,10 @@ FASTQ2="DE07NGSUKBR151852_2_paired.fq.gz"
 SAMPLE="DE07NGSUKBR151852"
 
 echo "Extrahiere Human Read-IDs"
-awk '$4=="human"{print $1}' table.tsv > human_ids.txt
+awk '$4=="human"{print $1}' $TABLE > human_ids.txt
 
 echo "Extrahiere Mouse Read-IDs"
-awk '$4=="mouse"{print $1}' table.tsv > mouse_ids.txt
+awk '$4=="mouse"{print $1}' $TABLE > mouse_ids.txt
 
 
 echo "Erzeuge Human FASTQ .gz Dateien"
