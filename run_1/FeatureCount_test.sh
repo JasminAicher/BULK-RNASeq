@@ -20,6 +20,8 @@ else
     export SRUN_CPUS_PER_TASK=1
 fi
 
+export PATH=/home/jaicher_hpc/subread-2.0.2-Linux-x86_64/bin:$PATH
+
 echo "Running a job"
 echo " Using ${SLURM_NNODES} nodes"
 echo " Using ${SLURM_NTASKS} tasks"
