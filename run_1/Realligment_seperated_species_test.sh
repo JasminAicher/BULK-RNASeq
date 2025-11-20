@@ -24,22 +24,26 @@ echo "Running a job"
 echo " Using ${SLURM_NNODES} nodes"
 echo " Using ${SLURM_NTASKS} tasks"
 echo " Using ${OMP_NUM_THREADS} threads per process"
-export PATH=$HOME/samtools-1.20:$PATH
+export PATH=$HOME/samtools-1.20-install/bin:$PATH
+
 
 # Human Reads mit Human Genome alignieren
-#hisat2 -p 8 -x human_index -1 DE07NGSUKBR151852_1_human.fq.gz -2 DE07NGSUKBR151852_2_human.fq.gz -S sample_human_final.sam
-#echo "Human reads alligned"
+hisat2 -p 8 -x human_index -1 DE07NGSUKBR151852_1_human.fq.gz -2 DE07NGSUKBR151852_2_human.fq.gz -S sample_human_final.sam
+echo "Human reads alligned"
+
 # Mouse Reads mit Mouse Genome alignieren
-#hisat2 -p 8 -x mouse_index -1 DE07NGSUKBR151852_1_mouse.fq.gz -2 DE07NGSUKBR151852_2_mouse.fq.gz  -S sample_mouse_final.sam
-#echo "Mouse reads alligned"
+hisat2 -p 8 -x mouse_index -1 DE07NGSUKBR151852_1_mouse.fq.gz -2 DE07NGSUKBR151852_2_mouse.fq.gz  -S sample_mouse_final.sam
+echo "Mouse reads alligned"
+
 # SAM zu BAM konvertieren und sortieren
 samtools view -bS sample_human_final.sam | samtools sort -o sample_human_final.sorted.bam
 samtools view -bS sample_mouse_final.sam | samtools sort -o sample_mouse_final.sorted.bam
 echo "BAMzuSAM"
+
 # Index erstellen
 samtools index sample_human_final.sorted.bam
 samtools index sample_mouse_final.sorted.bam
 echo "Indexe erstellt"
 
 wait
-echo "All jobs completed.
+echo "All jobs completed."

@@ -1,8 +1,8 @@
 #!/bin/bash
 #SBATCH --account=ag_ukb_irnb_bruestle
-#SBATCH --job-name=hisat2_seperate_index
-#SBATCH --output=hisat2_seperate_index_%j.log    # Protokoll-Datei
-#SBATCH --error=hisat2_seperate_index_%j.err     # Fehler-Protokoll
+#SBATCH --job-name=FeatureCount
+#SBATCH --output=FeatureCount_%j.log    # Protokoll-Datei
+#SBATCH --error=FeatureCount_%j.err     # Fehler-Protokoll
 #SBATCH --time=8:00:00                 # Maximale Laufzeit
 #SBATCH --partition=intelsr_short
 #SBATCH --mail-type=ALL
@@ -25,8 +25,11 @@ echo " Using ${SLURM_NNODES} nodes"
 echo " Using ${SLURM_NTASKS} tasks"
 echo " Using ${OMP_NUM_THREADS} threads per process"
 
-hisat2-build -p 16 Homo_sapiens.GRCh38.dna.primary_assembly.fa human_index
-hisat2-build -p 16 Mus_musculus.GRCm39.dna.primary_assembly.fa mouse_index
 
-wait
-echo "All jobs completed."
+#counts human reads
+featureCounts -T 8 -p -B -a Homo_sapiens.GRCh38.113.gtf -o counts_human.txt -g gene_id -t exon sample_human_final.sorted.bam
+echo "human reads sorted"
+#counts mouse reads
+featureCounts -T 8 -p -B -a Mus_musculus.GRCm39.113.gtf -o counts_mouse.txt -g gene_id -t exon sample_mouse_final.sorted.bam
+echo "mouse reads sorted"
+echo "done"
