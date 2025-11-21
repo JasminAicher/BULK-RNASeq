@@ -3,11 +3,11 @@
 #SBATCH --job-name=Pipeline
 #SBATCH --output=Pipeline_%j.log    # Protokoll-Datei
 #SBATCH --error=Pipeline_%j.err     # Fehler-Protokoll
-#SBATCH --time=24:00:00                 # Maximale Laufzeit
-#SBATCH --partition=intelsr_medium
+#SBATCH --time=01:00:00                 # Maximale Laufzeit
+#SBATCH --partition=intelsr_devel
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=jaicher@uni-bonn.de  # Tipp: E-Mail-Benachrichtigung
-#SBATCH --nodes=5 # nodes requested
+#SBATCH --nodes=1 # nodes requested
 #SBATCH --tasks-per-node=4 # number of tasks per node
 #SBATCH --cpus-per-task=24 # number of allocated cores per process
 
