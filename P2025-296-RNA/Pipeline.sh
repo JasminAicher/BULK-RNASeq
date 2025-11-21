@@ -11,7 +11,6 @@
 #SBATCH --tasks-per-node=4 # number of tasks per node
 #SBATCH --cpus-per-task=24 # number of allocated cores per process
 
-export PATH=/home/jaicher_hpc/.local/bin:/home/jaicher_hpc/bin:/home/jaicher_hpc:/home/jaicher_hpc/cutadapt:/home/jaicher_hpc/subread-2.0.2-Linux-x86_64/bin:/home/jaicher_hpc/samtools-1.20-install/bin:/home/jaicher_hpc/hisat2-2.2.1:/opt/software/easybuild-INTEL/software/Miniforge3/24.1.2-0/bin:/opt/software/easybuild-INTEL/software/Miniforge3/24.1.2-0/condabin:/home/jaicher_hpc/.local/bin:/home/jaicher_hpc/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
 
 module load Python/3.11.3-GCCcore-12.3.0
 module load Biopython/1.84-foss-2024a
@@ -35,7 +34,7 @@ fi
 
 pipeline_single_sample() {
     echo "Start TrimmGalore"
-    trim_galore --paired --length 20 --path_to_cutadapt $HOME/.local/bin/cutadapt -o trimmed $1 $2 
+    trim_galore --paired --length 20 -o trimmed $1 $2 
 
     echo "Start Mixed Allignment"
     hisat2 -x "${Workspacepath}/indexes/combined_index" -1 "trimmed/$3_1_val_1.fq.gz" -2 "trimmed/$3_2_val_2.fq.gz" -S "combined_sams/$3_combined.sam" --summary-file "combined_sams/$3_alignment_summary.txt"
