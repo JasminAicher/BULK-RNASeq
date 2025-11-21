@@ -15,6 +15,8 @@ module purge
 module load Python/3.11.3-GCCcore-12.3.0
 module load Biopython/1.84-foss-2024a
 module load Java
+export LD_LIBRARY_PATH=/opt/software/easybuild-INTEL/software/Python/3.11.3-GCCcore-12.3.0/lib:$LD_LIBRARY_PATH
+
 
 mkdir combined_sams
 mkdir separated_files
