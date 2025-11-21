@@ -43,7 +43,7 @@ pipeline_single_sample() {
     #trim_galore --paired --length 20 -o trimmed $1 $2 
 
     #echo "Start Mixed Allignment"
-   # hisat2 -x "lustre/scratch/data/jaicher_hpc-CNTNAP2/indexes/combined_index/combined_index" -1 "trimmed/$3_1_val_1.fq.gz" -2 "trimmed/$3_2_val_2.fq.gz" -S "combined_sams/$3_combined.sam" --summary-file "combined_sams/$3_alignment_summary.txt"
+   # hisat2 -x combined_index -1 "trimmed/$3_1_val_1.fq.gz" -2 "trimmed/$3_2_val_2.fq.gz" -S "combined_sams/$3_combined.sam" --summary-file "combined_sams/$3_alignment_summary.txt"
 
     #echo "Start byPrim"
     #cat "combined_sams/$3_combined.sam" | python byPrim.py -s $3
