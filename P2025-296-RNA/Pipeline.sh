@@ -22,7 +22,7 @@ module load Java
 
 
 
-mkdir combined_sams
+# mkdir combined_sams
 mkdir separated_files
 mkdir realligned_files
 mkdir final_txt
@@ -42,14 +42,14 @@ pipeline_single_sample() {
     #echo "Start TrimmGalore"
     #trim_galore --paired --length 20 -o trimmed $1 $2 
 
-    echo "Start Mixed Allignment"
-    hisat2 -x "lustre/scratch/data/jaicher_hpc-CNTNAP2/indexes/combined_index/combined_index" -1 "trimmed/$3_1_val_1.fq.gz" -2 "trimmed/$3_2_val_2.fq.gz" -S "combined_sams/$3_combined.sam" --summary-file "combined_sams/$3_alignment_summary.txt"
+    #echo "Start Mixed Allignment"
+   # hisat2 -x "lustre/scratch/data/jaicher_hpc-CNTNAP2/indexes/combined_index/combined_index" -1 "trimmed/$3_1_val_1.fq.gz" -2 "trimmed/$3_2_val_2.fq.gz" -S "combined_sams/$3_combined.sam" --summary-file "combined_sams/$3_alignment_summary.txt"
 
-    echo "Start byPrim"
-    cat "combined_sams/$3_combined.sam" | python byPrim.py -s $3
+    #echo "Start byPrim"
+    #cat "combined_sams/$3_combined.sam" | python byPrim.py -s $3
 
     echo "Start Separating Files"
-    TABLE="separated_files/$3_table.tsv"
+    TABLE="$3_table.tsv"
     FASTQ1="trimmed/$3_1_val_1.fq.gz"
     FASTQ2="trimmed/$3_2_val_2.fq.gz"
     echo "Extrahiere Human Read-IDs"
@@ -65,11 +65,11 @@ pipeline_single_sample() {
 
     # Human Reads mit Human Genome alignieren
     echo "Start Allignment of Human Samples"
-    hisat2 -p 8 -x "lustre/scratch/data/jaicher_hpc-CNTNAP2/indexes/human_index/human_index" -1 "separated_files/$3_1_human.fq.gz" -2 "separated_files/$3_2_human.fq.gz" -S "realligned_files/$3_human_final.sam"
+    hisat2 -p 8 -x human_index -1 "separated_files/$3_1_human.fq.gz" -2 "separated_files/$3_2_human.fq.gz" -S "realligned_files/$3_human_final.sam"
     echo "Human reads alligned"
     echo "Start Allignment of Human Samples"
     # Mouse Reads mit Mouse Genome alignieren
-    hisat2 -p 8 -x "lustre/scratch/data/jaicher_hpc-CNTNAP2/indexes/mouse_index/mouse_index" -1 "separated_files/$3_1_mouse.fq.gz" -2 "separated_files/$3_2_mouse.fq.gz"  -S "realligned_files/$3_mouse_final.sam"
+    hisat2 -p 8 -x mouse_index -1 "separated_files/$3_1_mouse.fq.gz" -2 "separated_files/$3_2_mouse.fq.gz"  -S "realligned_files/$3_mouse_final.sam"
     echo "Mouse reads alligned"
     echo "Start BAM zu SAM"
     # SAM zu BAM konvertieren und sortieren
