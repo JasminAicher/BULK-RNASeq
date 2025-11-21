@@ -35,7 +35,7 @@ fi
 
 pipeline_single_sample() {
     echo "Start TrimmGalore"
-    trim_galore --paired --length 20 -o trimmed $1 $2 
+    trim_galore --paired --length 20 --path_to_cutadapt $HOME/.local/bin/cutadapt -o trimmed $1 $2 
 
     echo "Start Mixed Allignment"
     hisat2 -x "${Workspacepath}/indexes/combined_index" -1 "trimmed/$3_1_val_1.fq.gz" -2 "trimmed/$3_2_val_2.fq.gz" -S "combined_sams/$3_combined.sam" --summary-file "combined_sams/$3_alignment_summary.txt"
