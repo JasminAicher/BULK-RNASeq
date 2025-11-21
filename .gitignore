@@ -3,3 +3,9 @@
 *.ht2l
 *.log
 *.err
+*.gz
+*.jar
+*.bam
+*.sam
+*.txt
+*.gtf
