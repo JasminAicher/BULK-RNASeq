@@ -103,7 +103,7 @@ for R1 in *_1.fq.gz; do
         continue
     fi
     
-    srun --exclusive --nodes 1 --ntasks 1 --output "log_err/${SAMPLE}.log" --error "log_err/${SAMPLE}.err" pipeline_single_sample ${R1} ${R2} ${SAMPLE} &
+    srun --exclusive --nodes 1 --ntasks 1 --output "log_err/${SAMPLE}.log" --error "log_err/${SAMPLE}.err" bash -c "pipeline_single_sample ${R1} ${R2} ${SAMPLE}" &
     echo "${SAMPLE} pipeline gestarted."
 
 done
