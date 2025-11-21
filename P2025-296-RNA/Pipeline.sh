@@ -11,7 +11,7 @@
 #SBATCH --tasks-per-node=4 # number of tasks per node
 #SBATCH --cpus-per-task=24 # number of allocated cores per process
 
-
+module purge
 module load Python/3.11.3-GCCcore-12.3.0
 module load Biopython/1.84-foss-2024a
 module load Java

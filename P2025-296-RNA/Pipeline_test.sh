@@ -3,7 +3,7 @@
 #SBATCH --job-name=Pipeline
 #SBATCH --output=Pipeline_%j.log    # Protokoll-Datei
 #SBATCH --error=Pipeline_%j.err     # Fehler-Protokoll
-#SBATCH --time=01:00:00                 # Maximale Laufzeit
+#SBATCH --time=00:05:00                 # Maximale Laufzeit
 #SBATCH --partition=intelsr_devel
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=jaicher@uni-bonn.de  # Tipp: E-Mail-Benachrichtigung
@@ -14,6 +14,8 @@
 
 
 
+module purge
+module load Python/3.11.3-GCCcore-12.3.0
 module load Biopython/1.84-foss-2024a
 module load Java
 
