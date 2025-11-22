@@ -39,14 +39,14 @@ else
 fi
 
 pipeline_single_sample() {
-    echo "Start TrimmGalore"
-    trim_galore --paired --length 20 -o trimmed $1 $2 
+    # echo "Start TrimmGalore"
+    # trim_galore --paired --length 20 -o trimmed $1 $2 
 
-    echo "Start Mixed Allignment"
-    hisat2 -x combined_index -1 "trimmed/$3_1_val_1.fq.gz" -2 "trimmed/$3_2_val_2.fq.gz" -S "combined_sams/$3_combined.sam" --summary-file "combined_sams/$3_alignment_summary.txt"
+    # echo "Start Mixed Allignment"
+    # hisat2 -x combined_index -1 "trimmed/$3_1_val_1.fq.gz" -2 "trimmed/$3_2_val_2.fq.gz" -S "combined_sams/$3_combined.sam" --summary-file "combined_sams/$3_alignment_summary.txt"
 
-    echo "Start byPrim"
-    cat "combined_sams/$3_combined.sam" | python byPrim.py -s $3
+    # echo "Start byPrim"
+    # cat "combined_sams/$3_combined.sam" | python byPrim.py -s $3
 
     echo "Start Separating Files"
     TABLE="$3_table.tsv"
