@@ -53,15 +53,15 @@ pipeline_single_sample() {
     FASTQ1="trimmed/$3_1_val_1.fq.gz"
     FASTQ2="trimmed/$3_2_val_2.fq.gz"
     echo "Extrahiere Human Read-IDs"
-    awk '$4=="human"{print $1}' "$TABLE" > separated_files/human_ids.txt
+    awk '$4=="human"{print $1}' "$TABLE" > separated_files/$3_human_ids.txt
     echo "Extrahiere Mouse Read-IDs"
-    awk '$4=="mouse"{print $1}' "$TABLE" > separated_files/mouse_ids.txt
+    awk '$4=="mouse"{print $1}' "$TABLE" > separated_files/$3_mouse_ids.txt
     echo "Erzeuge Human FASTQ .gz Dateien"
-    seqtk subseq "$FASTQ1" separated_files/human_ids.txt | gzip > "separated_files/$3_1_human.fq.gz"
-    seqtk subseq "$FASTQ2" separated_files/human_ids.txt | gzip > "separated_files/$3_2_human.fq.gz"
+    seqtk subseq "$FASTQ1" separated_files/$3_human_ids.txt | gzip > "separated_files/$3_1_human.fq.gz"
+    seqtk subseq "$FASTQ2" separated_files/$3_human_ids.txt | gzip > "separated_files/$3_2_human.fq.gz"
     echo "Erzeuge Mouse FASTQ .gz Dateien"
-    seqtk subseq "$FASTQ1" separated_files/mouse_ids.txt | gzip > "separated_files/$3_1_mouse.fq.gz"
-    seqtk subseq "$FASTQ2" separated_files/mouse_ids.txt | gzip > "separated_files/$3_2_mouse.fq.gz"
+    seqtk subseq "$FASTQ1" separated_files/$3_mouse_ids.txt | gzip > "separated_files/$3_1_mouse.fq.gz"
+    seqtk subseq "$FASTQ2" separated_files/$3_mouse_ids.txt | gzip > "separated_files/$3_2_mouse.fq.gz"
 
     # Human Reads mit Human Genome alignieren
     echo "Start Allignment of Human Samples"

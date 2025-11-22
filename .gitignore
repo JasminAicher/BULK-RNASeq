@@ -10,3 +10,7 @@
 *.txt
 *.gtf
 cutadapt/
+*.tab
+*.tmp
+*.bai
+*.summary
