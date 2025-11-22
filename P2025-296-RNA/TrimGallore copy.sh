@@ -23,8 +23,6 @@ else
     export SRUN_CPUS_PER_TASK=1
 fi
 
- echo "Start Mixed Allignment"
- hisat2 -x combined_index -1 "trimmed/DE34NGSUKBR151851_1_val_1.fq.gz" -2 "trimmed/DE34NGSUKBR151851_2_val_2.fq.gz" -S "combined_sams/DE34NGSUKBR151851_1_combined.sam" --summary-file "combined_sams/DE34NGSUKBR151851_1_alignment_summary.txt"
  echo "Start byPrim"
  cat "combined_sams/DE34NGSUKBR151851_1_combined.sam" | python byPrim.py -s DE34NGSUKBR151851_1
 
