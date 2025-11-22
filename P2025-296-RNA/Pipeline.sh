@@ -39,14 +39,14 @@ else
 fi
 
 pipeline_single_sample() {
-    #echo "Start TrimmGalore"
-    #trim_galore --paired --length 20 -o trimmed $1 $2 
+    echo "Start TrimmGalore"
+    trim_galore --paired --length 20 -o trimmed $1 $2 
 
-    #echo "Start Mixed Allignment"
-   # hisat2 -x combined_index -1 "trimmed/$3_1_val_1.fq.gz" -2 "trimmed/$3_2_val_2.fq.gz" -S "combined_sams/$3_combined.sam" --summary-file "combined_sams/$3_alignment_summary.txt"
+    echo "Start Mixed Allignment"
+    hisat2 -x combined_index -1 "trimmed/$3_1_val_1.fq.gz" -2 "trimmed/$3_2_val_2.fq.gz" -S "combined_sams/$3_combined.sam" --summary-file "combined_sams/$3_alignment_summary.txt"
 
-    #echo "Start byPrim"
-    #cat "combined_sams/$3_combined.sam" | python byPrim.py -s $3
+    echo "Start byPrim"
+    cat "combined_sams/$3_combined.sam" | python byPrim.py -s $3
 
     echo "Start Separating Files"
     TABLE="$3_table.tsv"
@@ -83,11 +83,11 @@ pipeline_single_sample() {
 
     #counts human reads
     echo "Start FeatureCountHuman"
-    featureCounts -T 8 -p -B -a "${Workspacepath}/genomes/Homo_sapiens.GRCh38.113.gtf" -o "final_txt/$3_counts_human.txt" -g gene_id -t exon "realligned_files/$3_human_final.sorted.bam"
+    featureCounts -T 8 -p -B -a Homo_sapiens.GRCh38.113.gtf -o "final_txt/$3_counts_human.txt" -g gene_id -t exon "realligned_files/$3_human_final.sorted.bam"
     echo "human reads sorted"
     #counts mouse reads
     echo "Start FeatureCountMouse"
-    featureCounts -T 8 -p -B -a "${Workspacepath}/genomes/Mus_musculus.GRCm39.113.gtf" -o "final_txt/$3_counts_mouse.txt" -g gene_id -t exon "realligned_files/$3_mouse_final.sorted.bam"
+    featureCounts -T 8 -p -B -a Mus_musculus.GRCm39.113.gtf -o "final_txt/$3_counts_mouse.txt" -g gene_id -t exon "realligned_files/$3_mouse_final.sorted.bam"
     echo "mouse reads sorted"
     echo "done"
 }
