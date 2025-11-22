@@ -20,5 +20,5 @@ else
     export SRUN_CPUS_PER_TASK=1
 fi
 
-trim_galore --paired --length 20 -o trimmed DE17NGSUKBR151866_1.fq.gz DE17NGSUKBR151866_2.fq.gz
+trim_galore --paired --length 20 -o trimmed DE82NGSUKBR151860_1.fq.gz DE82NGSUKBR151860_2.fq.gz
 
