@@ -22,7 +22,7 @@ module load Java
 
 
 
-# mkdir combined_sams
+mkdir combined_sams
 mkdir separated_files
 mkdir realligned_files
 mkdir final_txt
